@@ -1,0 +1,183 @@
+<html>
+<head>
+<style>
+        .tituloComida
+        {
+            margin:3vh 0 0 1vh;
+            padding:2px 0.8vh;
+            
+            font-weight:bold;
+            font-size: 3vh;
+            font-family: Verdana, Tahoma, sans-serif;
+            color: white;
+        }
+        td{
+          padding: 0 3vh 0 3vh;
+        }
+        .comida {
+            font:2vh 'Poppins';
+            color: white;
+            font-size: 2vh;
+        }
+        bdi{
+          font-size: 2.6vh;
+          font-family: inherit;
+          text-align: center;
+          color: white;
+        }
+        bdo{
+          margin-top: 17vh;
+        }
+#loader {
+  visibility:hidden;
+}
+
+    </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+
+  var script_url = "https://script.google.com/macros/s/AKfycbxoTA24qPZ_mc9qv-uzVYhTdhN4zAVtN3l8e1YfZ4IQP8pbBho/exec";
+
+  // print the returned data
+  function ctrlq(e) {
+
+
+	$("#re").html(e.result);
+	$("#re").css("visibility","visible");
+	read_value();
+
+  }
+
+
+
+
+function read_value() {
+
+$("#re").css("visibility","hidden");
+
+   document.getElementById("loader").style.visibility = "visible";
+ var url = script_url+"?action=read";
+
+$.getJSON(url, function (json) {
+
+    // Set the variables from the results array
+
+
+
+
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+
+
+        var header = table.createTHead();
+
+		var row = header.insertRow(0);
+
+    
+        for (var i = 1; i < json.records.length; i++) {
+
+          if (json.records[i-1].TIPO.includes('Bebida') && json.records[i-1].DISPONIBILIDAD.includes('si')) {
+
+            var tr = table.insertRow(-1);
+    		var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = json.records[i-1].NOMBRE;
+    		tabCell = tr.insertCell(-1);
+    		tabCell.innerHTML = json.records[i-1].VALOR;
+          }
+      
+        }
+
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+		document.getElementById("loader").style.visibility = "hidden";
+    document.getElementById("loader").style.display = "none";
+		$("#re").css("visibility","visible");
+    });
+	}
+
+  </script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="keywords" content=""/>
+  <title>Bebida</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital@1&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital@1&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+.footer{
+background-color: var(--white-color);
+padding: 20px 100px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 5vh;
+}
+@media(max-width: 991px){
+.footer{
+padding: 20px 50px;
+flex-direction: column-reverse;
+text-align: center;
+}
+}
+.text{
+color: var(--first-color);
+font-size: 1.8vh;
+}
+</style>
+
+</head>
+<body id="cuerpo" style="background-color: black;">
+  
+  <div class="container" style="margin-top: 9vh;">
+  <div class="row justify-content-md-center" style= "margin-top:3vh;">
+      <div class="col md-4 text-center">
+          <img src="../fotos/Logo Transparente Zaccaria La Bocha.png" id="imagen" style="width:25vh">
+      </div>
+  </div>
+</div>
+
+<div align="center" style="margin: 7vh 0;">
+  <h1 style="color: white; margin-bottom: 10vh;">Menu Especial <br> Dia de la Madre </h1>
+  <h3 class="tituloComida">Entrada</h3>
+  <p class="comida">Empanada de bondiola braseada <br>Picada de Fiambres con pan casero</p>
+  <h3 class="tituloComida">Principal</h3>
+  <p class="comida">Lasagna de espinaca con salsa bolognesa</p>
+  <h3 class="tituloComida">Postre</h3>
+  <p class="comida">Brownie con helado y reducción de frutillas</p>
+  <h3 class="tituloComida">Bebida</h3>
+  <p class="comida">Sin alcohol o copa de vino</p>
+  <h3 class="tituloComida">Cafe</h3>
+  <br>
+  <h3 class="tituloComida">$1650</h3>
+</div>
+
+  
+  <section class="footer" style=" margin-top: 6vh;">
+    <p class="text"><a style="color: white;" href="https://api.whatsapp.com/send?phone=+5491166965813&text=%C2%A1Hola!%20%C2%BFC%C3%B3mo%20estas?%20Me%20gustar%C3%ADa%20hacerte%20una%20consulta%20acerca%20de%20la%20carta%20digital">Diseño y Desarrollo por Diego Simón</a></p>
+    <p class="text" style="font-size: 1.5vh; color: white;">© Zaccaria 2021 | Todos los derechos reservados.</p>
+  </section>
+
+ 
+</body>
+<html>
